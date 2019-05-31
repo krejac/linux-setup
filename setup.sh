@@ -1,10 +1,20 @@
 #!/usr/bin/bash
+
+# User questions: 
+read -p "Install virtualbox guest additions? [y/n] " vbguest
+
+read -p "Set up Git? [y/n] " git
+if [[ $git = y ]] ; then
+	read -p "Enter name: " name
+	read -p "Enter email: " email
+fi
+
 echo ""
 echo "*********************"
 echo "* Updating packages *"
 echo "*********************"
 echo ""
-sudo apt update && sudo apt dist-upgrade && sudo apt autoremove
+sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y
 
 echo ""
 echo "******************************"
@@ -13,10 +23,9 @@ echo "* Installing essential tools *"
 echo "*                            *"
 echo "******************************"
 echo ""
-sudo apt install vim git python-pip xclip
+sudo apt install vim git python-pip xclip -y
 sudo snap install bitwarden
 
-read -p "Install virtualbox guest additions? [y/n] " vbguest
 if [[ $vbguest = y ]] ; then
 	echo ""
 	echo "*************************************"
@@ -25,7 +34,7 @@ if [[ $vbguest = y ]] ; then
   	echo "*                                   *"
   	echo "*************************************"
 	echo ""
-	sudo apt install virtualbox-guest-dkms build-essential linux-headers-virtual
+	sudo apt install virtualbox-guest-dkms build-essential linux-headers-virtual -y
   	
   	echo "******************************************"
 	echo "*                                        *"
@@ -47,7 +56,7 @@ echo "*                             *"
 echo "*******************************"
 echo ""
 # Setting up powerline ...
-sudo apt install powerline fonts-powerline powerline-gitstatus
+sudo apt install powerline fonts-powerline powerline-gitstatus -y
 cat >> ~/.bashrc << EOL
 if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
     source /usr/share/powerline/bindings/bash/powerline.sh
@@ -68,12 +77,11 @@ EOL
 # Setting the desktop image ...
 wget https://i.imgur.com/dAsNfX8.jpg -O ~/Pictures/disco-dingo.jpg && gsettings set org.gnome.desktop.background picture-uri ~/Pictures/disco-dingo.jpg
 
-read -p "Set up Git? [y/n] " git
 if [[ $git = y ]] ; then
-	read -p "Enter name: " name
+	#read -p "Enter name: " name
 	# Set credentials to use with git
 	git config --global user.name "$name"
-	read -p "Enter email: " email
+	#read -p "Enter email: " email
 	git config --global user.email "$email"
 	# Generate keys
 	ssh-keygen -t rsa -b 4096 -C "$email"
