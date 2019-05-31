@@ -16,8 +16,8 @@ echo ""
 sudo apt install vim git python-pip xclip
 sudo snap install bitwarden
 
-read -p "Install virtualbox guest additions? [yn]" answer
-if [[ $answer = y ]] ; then
+read -p "Install virtualbox guest additions? [y/n] " vbguest
+if [[ $vbguest = y ]] ; then
 	echo ""
 	echo "*************************************"
 	echo "*                                   *"
@@ -68,7 +68,7 @@ EOL
 # Setting the desktop image ...
 wget https://i.imgur.com/dAsNfX8.jpg -O ~/Pictures/disco-dingo.jpg && gsettings set org.gnome.desktop.background picture-uri ~/Pictures/disco-dingo.jpg
 
-read -p "Set up Git? [y/n]" git
+read -p "Set up Git? [y/n] " git
 if [[ $git = y ]] ; then
 	read -p "Enter name: " name
 	# Set credentials to use with git
