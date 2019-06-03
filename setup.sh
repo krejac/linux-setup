@@ -25,6 +25,7 @@ echo "******************************"
 echo ""
 sudo apt install vim git python-pip xclip -y
 sudo snap install bitwarden
+sudo snap install atom --classic
 
 if [[ $vbguest = y ]] ; then
 	echo ""
