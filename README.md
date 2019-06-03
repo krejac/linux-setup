@@ -8,7 +8,7 @@
 
 OR
 
-1) ```wget -O setup.sh https://raw.githubusercontent.com/krejac/linux-setup/master/setup.sh && chmod +X setup.sh```   
+1) ```wget -O setup.sh https://raw.githubusercontent.com/krejac/linux-setup/master/setup.sh && chmod +x setup.sh```   
 2) ```less ./setup.sh```   
 3) ```./setup.sh```   
  
