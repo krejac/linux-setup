@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # User questions: 
-read -p "Install virtualbox guest additions? [y/n] " vbguest
+read -p "Running in VirtualBox? [y/n] " vbguest
 
 read -p "Set up Git? [y/n] " git
 if [[ $git = y ]] ; then
@@ -23,7 +23,8 @@ echo "* Installing essential tools *"
 echo "*                            *"
 echo "******************************"
 echo ""
-sudo apt install git pandoc python-pip vim xclip -y
+# NOTE: 'pandoc' and 'texlive-latex-recommended' are required to create slideshows
+sudo apt install git pandoc python-pip texlive-latex-recommended vim xclip -y
 sudo snap install bitwarden
 sudo snap install atom --classic
 
@@ -36,6 +37,8 @@ if [[ $vbguest = y ]] ; then
   	echo "*************************************"
 	echo ""
 	sudo apt install virtualbox-guest-dkms build-essential linux-headers-virtual -y
+	# If running in a virtual machine screenlock is disabled
+	gsettings set org.gnome.desktop.screensaver lock-enabled false
   	
   	echo "******************************************"
 	echo "*                                        *"
