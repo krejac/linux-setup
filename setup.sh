@@ -23,7 +23,7 @@ echo "* Installing essential tools *"
 echo "*                            *"
 echo "******************************"
 echo ""
-sudo apt install vim git python-pip xclip -y
+sudo apt install git pandoc python-pip vim xclip -y
 sudo snap install bitwarden
 sudo snap install atom --classic
 
